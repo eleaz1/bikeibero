@@ -12,6 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class BikeServiceImp implements IBikeservice {
 
@@ -30,10 +33,8 @@ public class BikeServiceImp implements IBikeservice {
     }
 
     @Override
-    public Page<BikeDTO> read(Integer pageSize, Integer pageNumber) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        return bikeRepository.findAll(pageable)
-                .map(BikeTransformer::getBikeDTOFromBike);
+    public List<BikeDTO> read() {
+        return bikeRepository.findAll().stream().map(BikeTransformer::getBikeDTOFromBike).collect(Collectors.toList());
     }
 
     @Override

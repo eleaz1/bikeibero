@@ -5,10 +5,12 @@ import com.example.bikeibero.service.dto.BikeDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 public interface IBikeservice {
     public ResponseEntity create(BikeDTO bikeDTO);
 
-    public Page<BikeDTO> read(Integer pageSize, Integer pageNumber);
+    public List<BikeDTO> read();
 
     public Bike update(Bike bike);
 
